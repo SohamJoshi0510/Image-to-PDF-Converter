@@ -1,27 +1,87 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Verify Email - Image to PDF Converter</title>
-  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PDF Magic - Verify Account</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/amazon-cognito-identity-js/6.3.7/amazon-cognito-identity.min.js"></script>
 </head>
-<body class="bg-gray-50">
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>PDF Magic</h1>
+        </div>
 
-  <header class="bg-white shadow-md">
-    <div class="container mx-auto px-4 py-4">
-      <img src="images/logo.png" alt="Logo" class="h-12">
+        <div class="auth-form" role="main">
+            <h2>Verify Your Account</h2>
+            <p class="verification-message">
+                We've sent a verification code to your email address. 
+                Please enter it below to complete your registration.
+            </p>
+
+            <form id="verificationForm">
+                <div class="form-group">
+                    <label for="verificationCode">Verification Code</label>
+                    <input type="text" id="verificationCode" name="verificationCode" required>
+                </div>
+
+                <button type="submit" class="btn-primary">Verify Account</button>
+                <button type="button" id="resendCode" class="btn-secondary">Resend Code</button>
+            </form>
+        </div>
     </div>
-  </header>
 
-  <section class="max-w-md mx-auto bg-white rounded-lg shadow-md mt-10 p-8">
-    <h1 class="text-2xl font-bold text-gray-700 text-center">Verify Email</h1>
-    <form id="verifyForm" class="mt-6 space-y-4">
-      <input type="email" id="emailInputVerify" placeholder="Email" required class="w-full p-2 border border-gray-300 rounded-md">
-      <input type="text" id="codeInputVerify" placeholder="Verification Code" required class="w-full p-2 border border-gray-300 rounded-md">
-      <button type="submit" class="w-full bg-indigo-600 text-white py-2 rounded-md font-semibold">Verify</button>
-    </form>
-  </section>
+    <script src="js/config.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.getElementById('verificationForm');
+            const resendButton = document.getElementById('resendCode');
+            const userEmail = sessionStorage.getItem('userEmail');
 
+            if (!userEmail) {
+                window.location.href = 'register.html';
+                return;
+            }
+
+            const userPool = new AmazonCognitoIdentity.CognitoUserPool({
+                UserPoolId: _config.cognito.userPoolId,
+                ClientId: _config.cognito.userPoolClientId
+            });
+
+            const cognitoUser = new AmazonCognitoIdentity.CognitoUser({
+                Username: userEmail,
+                Pool: userPool
+            });
+
+            form.addEventListener('submit', async function(e) {
+                e.preventDefault();
+                const code = document.getElementById('verificationCode').value;
+
+                cognitoUser.confirmRegistration(code, true, function(err, result) {
+                    if (err) {
+                        alert(err.message || JSON.stringify(err));
+                        return;
+                    }
+                    
+                    // Clear email from session storage
+                    sessionStorage.removeItem('userEmail');
+                    
+                    alert('Verification successful! Please sign in.');
+                    window.location.href = 'signin.html';
+                });
+            });
+
+            resendButton.addEventListener('click', function() {
+                cognitoUser.resendConfirmationCode(function(err, result) {
+                    if (err) {
+                        alert(err.message || JSON.stringify(err));
+                        return;
+                    }
+                    alert('Verification code has been resent to your email.');
+                });
+            });
+        });
+    </script>
 </body>
 </html>
