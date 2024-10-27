@@ -1,0 +1,47 @@
+<!-- convert.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Convert Images - PDF Magic</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>PDF Magic</h1>
+            <nav>
+                <a href="index.html">Home</a>
+                <a href="convert.html" class="active">Convert</a>
+                <a href="#" id="signOutButton">Sign Out</a>
+            </nav>
+        </header>
+        
+        <main class="converter">
+            <div id="dropzone" class="dropzone">
+                <div class="dropzone-content">
+                    <img src="images/upload-icon.svg" alt="Upload" id="uploadIcon">
+                    <p>Drag and drop your images here</p>
+                    <p>or</p>
+                    <button id="selectFiles" class="secondary-button">Select Files</button>
+                    <input type="file" id="fileInput" multiple accept="image/*" style="display: none;">
+                </div>
+            </div>
+            
+            <div id="preview" class="preview-container"></div>
+            
+            <button id="convertButton" class="primary-button" disabled>Convert to PDF</button>
+            
+            <div id="downloadSection" class="download-section" style="display: none;">
+                <h3>Your PDF is ready!</h3>
+                <a id="downloadLink" class="download-button" href="#" target="_blank">Download PDF</a>
+            </div>
+        </main>
+    </div>
+    <script src="js/vendor/amazon-cognito-identity.min.js"></script>
+    <script src="js/config.js"></script>
+    <script src="js/cognito-auth.js"></script>
+    <script src="js/convert.js"></script>
+</body>
+</html>

@@ -1,57 +1,72 @@
-<!doctype html>
+<!-- index.html -->
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Image to PDF Converter</title>
-  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PDF Magic - Convert Images to PDF</title>
+    <link rel="stylesheet" href="css/styles.css">
 </head>
-<body class="bg-gray-50 font-sans leading-normal tracking-normal">
-
-  <header class="bg-white shadow-md">
-    <div class="container mx-auto px-4 py-4 flex justify-between items-center">
-      <h1 class="text-2xl font-bold text-indigo-600">Image to PDF Converter</h1>
-      <nav class="space-x-4">
-        <a href="index.html" class="text-gray-700 hover:text-indigo-600">Home</a>
-        <a href="about.html" class="text-gray-700 hover:text-indigo-600">About Us</a>
-        <a href="faq.html" class="text-gray-700 hover:text-indigo-600">FAQ</a>
-        <a href="contact.html" class="text-gray-700 hover:text-indigo-600">Contact</a>
-      </nav>
-      <a href="register.html" class="bg-indigo-600 text-white px-4 py-2 rounded-md">Get Started</a>
+<body>
+    <div class="container">
+        <header>
+            <h1>PDF Magic</h1>
+            <nav>
+                <a href="index.html" class="active">Home</a>
+                <a href="convert.html">Convert</a>
+                <a href="#" id="signInButton">Sign In</a>
+                <a href="register.html" id="signUpButton">Sign Up</a>
+            </nav>
+        </header>
+        
+        <main class="hero">
+            <h2>Transform Your Images into Professional PDFs</h2>
+            <p>Quick, easy, and secure image to PDF conversion</p>
+            <a href="register.html" class="cta-button">Get Started</a>
+        </main>
     </div>
-  </header>
+    <script src="js/config.js"></script>
+    <script src="js/site.js"></script>
+</body>
+</html>
 
-  <main class="py-12">
-    <section class="text-center max-w-2xl mx-auto mb-12">
-      <h2 class="text-3xl font-bold text-gray-800">How Does It Work?</h2>
-      <p class="mt-4 text-gray-600">
-        Convert your images into a single PDF in just a few clicks! Sign up, upload your images, and get a PDF instantly.
-      </p>
-    </section>
-
-    <section class="bg-indigo-600 text-white py-8">
-      <div class="container mx-auto text-center">
-        <h2 class="text-2xl font-bold">Join Us</h2>
-        <p class="mt-2">Receive updates about new features and improvements!</p>
-        <form class="mt-4 flex justify-center">
-          <input type="email" placeholder="Enter your email" class="px-4 py-2 rounded-l-md text-gray-800">
-          <button class="bg-white text-indigo-600 px-4 py-2 rounded-r-md font-bold">Sign Up</button>
-        </form>
-      </div>
-    </section>
-  </main>
-
-  <footer class="bg-gray-800 text-white py-6">
-    <div class="container mx-auto text-center space-y-4">
-      <nav class="space-x-4">
-        <a href="index.html" class="hover:underline">Home</a>
-        <a href="about.html" class="hover:underline">About Us</a>
-        <a href="faq.html" class="hover:underline">FAQ</a>
-        <a href="contact.html" class="hover:underline">Contact</a>
-      </nav>
-      <p>&copy; 2024 Image to PDF Converter. All rights reserved.</p>
+// register.html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register - PDF Magic</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>PDF Magic</h1>
+        </header>
+        
+        <main class="auth-form">
+            <h2>Create Account</h2>
+            <form id="registrationForm">
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" required>
+                </div>
+                <div class="form-group">
+                    <label for="confirmPassword">Confirm Password</label>
+                    <input type="password" id="confirmPassword" required>
+                </div>
+                <button type="submit" class="primary-button">Create Account</button>
+            </form>
+            <p>Already have an account? <a href="signin.html">Sign in</a></p>
+        </main>
     </div>
-  </footer>
-
+    <script src="js/vendor/amazon-cognito-identity.min.js"></script>
+    <script src="js/config.js"></script>
+    <script src="js/cognito-auth.js"></script>
 </body>
 </html>

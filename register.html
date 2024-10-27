@@ -1,28 +1,40 @@
+<!-- register.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Register - Image to PDF Converter</title>
-  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register - PDF Magic</title>
+    <link rel="stylesheet" href="css/styles.css">
 </head>
-<body class="bg-gray-50">
-
-  <header class="bg-white shadow-md">
-    <div class="container mx-auto px-4 py-4">
-      <img src="images/logo.png" alt="Logo" class="h-12">
+<body>
+    <div class="container">
+        <header>
+            <h1>PDF Magic</h1>
+        </header>
+        
+        <main class="auth-form">
+            <h2>Create Account</h2>
+            <form id="registrationForm">
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" required>
+                </div>
+                <div class="form-group">
+                    <label for="confirmPassword">Confirm Password</label>
+                    <input type="password" id="confirmPassword" required>
+                </div>
+                <button type="submit" class="primary-button">Create Account</button>
+            </form>
+            <p>Already have an account? <a href="signin.html">Sign in</a></p>
+        </main>
     </div>
-  </header>
-
-  <section class="max-w-md mx-auto bg-white rounded-lg shadow-md mt-10 p-8">
-    <h1 class="text-2xl font-bold text-gray-700 text-center">Register</h1>
-    <form id="registrationForm" class="mt-6 space-y-4">
-      <input type="email" id="emailInputRegister" placeholder="Email" required class="w-full p-2 border border-gray-300 rounded-md">
-      <input type="password" id="passwordInputRegister" placeholder="Password" required class="w-full p-2 border border-gray-300 rounded-md">
-      <input type="password" id="password2InputRegister" placeholder="Confirm Password" required class="w-full p-2 border border-gray-300 rounded-md">
-      <button type="submit" class="w-full bg-indigo-600 text-white py-2 rounded-md font-semibold">Sign Up</button>
-    </form>
-  </section>
-
+    <script src="js/vendor/amazon-cognito-identity.min.js"></script>
+    <script src="js/config.js"></script>
+    <script src="js/cognito-auth.js"></script>
 </body>
 </html>
