@@ -1,49 +1,27 @@
 <!DOCTYPE html>
-<html class="no-js">
+<html lang="en">
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Verify Email - Image to PDF Converter</title>
-    <meta name="description" content="Verify your email for Image to PDF Converter">
-    <meta name="viewport" content="width=device-width">
-
-    <link rel="stylesheet" href="css/font.css">
-    <link rel="stylesheet" href="css/normalize.css">
-    <link rel="stylesheet" href="css/index.css">
-    <link rel="stylesheet" href="css/message.css">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Verify Email - Image to PDF Converter</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 </head>
-<body>
+<body class="bg-gray-50">
 
-    <div id="noCognitoMessage" class="configMessage" style="display: none;">
-        <div class="backdrop"></div>
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <h3 class="panel-title">No Cognito User Pool Configured</h3>
-            </div>
-            <div class="panel-body">
-                <p>There is no user pool configured in <a href="/js/config.js">/js/config.js</a>.</p>
-            </div>
-        </div>
+  <header class="bg-white shadow-md">
+    <div class="container mx-auto px-4 py-4">
+      <img src="images/logo.png" alt="Logo" class="h-12">
     </div>
+  </header>
 
-    <header>
-      <img src="images/logo.png" alt="Image to PDF Converter Logo">
-    </header>
+  <section class="max-w-md mx-auto bg-white rounded-lg shadow-md mt-10 p-8">
+    <h1 class="text-2xl font-bold text-gray-700 text-center">Verify Email</h1>
+    <form id="verifyForm" class="mt-6 space-y-4">
+      <input type="email" id="emailInputVerify" placeholder="Email" required class="w-full p-2 border border-gray-300 rounded-md">
+      <input type="text" id="codeInputVerify" placeholder="Verification Code" required class="w-full p-2 border border-gray-300 rounded-md">
+      <button type="submit" class="w-full bg-indigo-600 text-white py-2 rounded-md font-semibold">Verify</button>
+    </form>
+  </section>
 
-    <section class="form-wrap">
-        <h1>Verify Email</h1>
-        <form id="verifyForm">
-          <input type="email" id="emailInputVerify" placeholder="Email" required>
-          <input type="text" id="codeInputVerify" placeholder="Verification Code" required>
-
-          <input type="submit" value="Verify">
-        </form>
-    </section>
-
-    <script src="js/vendor/jquery-3.1.0.js"></script>
-    <script src="js/vendor/aws-cognito-sdk.min.js"></script>
-    <script src="js/vendor/amazon-cognito-identity.min.js"></script>
-    <script src="js/config.js"></script>
-    <script src="js/cognito-auth.js"></script>
 </body>
 </html>
